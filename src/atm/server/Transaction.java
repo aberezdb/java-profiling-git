@@ -39,14 +39,14 @@ public class Transaction {
                 nonSafeExec();
             }
         } else {
-                synchronized (a1)
-                {
-                    Thread.yield();
-                    synchronized (a2)
-                    {
-                        nonSafeExec();
-                    }
+            final Account first = a1.hashCode() < a2.hashCode() ? a1 : a2;
+            final Account second = a1.hashCode() < a2.hashCode() ? a2 : a1;
+            synchronized (first) {
+                Thread.yield();
+                synchronized (second) {
+                    nonSafeExec();
                 }
+            }
         }
 
 

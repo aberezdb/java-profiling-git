@@ -44,7 +44,9 @@ public class ServerTransport implements MessageListener {
                 }
 
                 break;
-
+            case LOGOUT:
+                storage.removeSession(((LogonMessage) message).sessionId);
+                break;
 
             case INCREASE:
             case TRANSFER_TO:

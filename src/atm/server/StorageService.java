@@ -41,6 +41,10 @@ public class StorageService {
         return sessionHashMap.get(sessionId);
     }
 
+    public void removeSession (String sessionID){
+        sessionHashMap.remove(sessionID);
+    }
+
     public  Session lookupSessionProxyForAccount(String accountId) {
         return new Session(getOrCreateAccount(accountId), null, null, null);
 
